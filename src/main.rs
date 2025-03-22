@@ -35,23 +35,6 @@ impl LocationRecord {
     }
 }
 
-impl Default for LocationRecord {
-    fn default() -> Self {
-        LocationRecord {
-            record_type: String::from("location"),
-            tid: String::from("kr"),
-            // Above constants only constants ever expected to be used
-            tst: 0,
-            timestamp_nanos: 0,
-            lat: 0.0,
-            lon: 0.0,
-            acc: None,
-            alt: None,
-            vac: None,
-        }
-    }
-}
-
 #[derive(Parser)]
 #[command(version, about, long_about=None)]
 struct Cli {
@@ -129,7 +112,8 @@ fn main() {
                 vac: row_vals[4].clone().try_into().unwrap(),
                 timestamp_nanos: row_vals[7].try_extract().unwrap(),
                 tst: row_vals[8].try_extract().unwrap(),
-                ..Default::default()
+                tid: row_vals[5].try_extract().unwrap(),
+                record_type: row_vals[6].clone().try_into().unwrap()
             }
         })
         .collect();
