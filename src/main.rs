@@ -118,6 +118,7 @@ fn main() {
     let args = Cli::parse();
     let record_location = args.input_file;
     let tracker_id = args.tracker_id;
+    //TODO this should be an optional list to be more genericly useful
     let exclude_device = args.exclude_device;
 
     //Read
@@ -150,4 +151,37 @@ fn main() {
         active_lines.push(lr.create_owntrack_line());
     }
     print!("{active_file}");
+}
+
+#[cfg(test)]
+mod tests {
+    use std::{env, path::PathBuf};
+
+    use super::*;
+    #[test]
+    fn test_record_to_ot_line() {
+        let test_time = NaiveDateTime::new(NaiveDate::from_ymd_opt(2015, 01, 11).unwrap(), NaiveTime::from_hms_opt(12, 12, 0).unwrap()).and_utc();
+        let test_tst = test_time.timestamp();
+        let test_record = LocationRecord{
+            record_type: String::from("location"),
+            tid: String::from("tt"),
+            tst: test_tst,
+            timestamp_nanos: test_time.timestamp_nanos_opt().unwrap(),
+            lat: 42.0,
+            lon: 64.0,
+            acc: Some(20),
+            alt: None,
+            vac: None
+        };
+        let expected = format!("2015-01-11T12:12:00Z\t*                 \t{{\"_type\":\"location\",\"tid\":\"tt\",\"tst\":{test_tst},\"lat\":42.0,\"lon\":64.0,\"acc\":20}}\n");
+        assert_eq!(test_record.create_owntrack_line(), expected)
+    }
+    #[test]
+    fn test_transform_records(){
+        let synthetic_data: PathBuf = [env!("CARGO_MANIFEST_DIR"), "src", "test_data", "synthetic_data.json"].iter().collect();
+        println!("{:?}", synthetic_data);
+        let df = read(synthetic_data.to_str().unwrap()).unwrap();
+        let data = transform(df, "tt", 1).unwrap();
+        assert_eq!(data.len(), 9)
+    }
 }

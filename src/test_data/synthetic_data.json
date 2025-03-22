@@ -1,0 +1,237 @@
+{"locations": [
+    {
+      "timestamp": "2024-11-18T08:00:00.000Z",
+      "latitudeE7": 374425383,
+      "longitudeE7": -1220347522,
+      "accuracy": 12,
+      "altitude": 42,
+      "verticalAccuracy": 8,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "STILL",
+              "confidence": 98
+            },
+            {
+              "type": "IN_VEHICLE",
+              "confidence": 2
+            }
+          ],
+          "timestamp": "2024-11-18T08:00:20.000Z"
+        }
+      ],
+      "source": "WIFI",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2024-11-18T09:00:00.000Z",
+      "latitudeE7": 374425602,
+      "longitudeE7": -1220348105,
+      "accuracy": 8,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "WALKING",
+              "confidence": 92
+            },
+            {
+              "type": "ON_FOOT",
+              "confidence": 8
+            }
+          ],
+          "timestamp": "2024-11-18T09:00:20.000Z"
+        }
+      ],
+      "source": "GPS",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2024-11-18T12:00:00.000Z",
+      "latitudeE7": 374450383,
+      "longitudeE7": -1220378522,
+      "accuracy": 10,
+      "altitude": 65,
+      "verticalAccuracy": 5,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "IN_VEHICLE",
+              "confidence": 95
+            },
+            {
+              "type": "ON_BICYCLE",
+              "confidence": 5
+            }
+          ],
+          "timestamp": "2024-11-18T12:00:20.000Z"
+        }
+      ],
+      "source": "GPS",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2024-11-19T08:00:00.000Z",
+      "latitudeE7": 374425383,
+      "longitudeE7": -1220347522,
+      "accuracy": 6,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "STILL",
+              "confidence": 99
+            },
+            {
+              "type": "UNKNOWN",
+              "confidence": 1
+            }
+          ],
+          "timestamp": "2024-11-19T08:00:20.000Z"
+        }
+      ],
+      "source": "WIFI",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2024-12-26T10:00:00.000Z",
+      "latitudeE7": 407384952,
+      "longitudeE7": -740169128,
+      "accuracy": 15,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "IN_VEHICLE",
+              "confidence": 90
+            },
+            {
+              "type": "ON_FOOT",
+              "confidence": 10
+            }
+          ],
+          "timestamp": "2024-12-26T10:00:20.000Z"
+        }
+      ],
+      "source": "GPS",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2025-01-24T08:00:00.000Z",
+      "latitudeE7": 374425383,
+      "longitudeE7": -1220347522,
+      "accuracy": 9,
+      "altitude": 41,
+      "verticalAccuracy": 7,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "STILL",
+              "confidence": 97
+            },
+            {
+              "type": "TILTING",
+              "confidence": 3
+            }
+          ],
+          "timestamp": "2025-01-24T08:00:20.000Z"
+        }
+      ],
+      "source": "WIFI",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2025-01-31T08:00:00.000Z",
+      "latitudeE7": 374425383,
+      "longitudeE7": -1220347522,
+      "accuracy": 5,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "STILL",
+              "confidence": 100
+            }
+          ],
+          "timestamp": "2025-01-31T08:00:20.000Z"
+        }
+      ],
+      "source": "WIFI",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2025-02-01T08:00:00.000Z",
+      "latitudeE7": 337463426,
+      "longitudeE7": -1182942276,
+      "accuracy": 7,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "IN_VEHICLE",
+              "confidence": 87
+            },
+            {
+              "type": "ON_FOOT",
+              "confidence": 13
+            }
+          ],
+          "timestamp": "2025-02-01T08:00:20.000Z"
+        }
+      ],
+      "source": "GPS",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2025-02-02T08:00:00.000Z",
+      "latitudeE7": 337463426,
+      "longitudeE7": -1182942276,
+      "accuracy": 10,
+      "altitude": 312,
+      "verticalAccuracy": 12,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "WALKING",
+              "confidence": 94
+            },
+            {
+              "type": "ON_FOOT",
+              "confidence": 6
+            }
+          ],
+          "timestamp": "2025-02-02T08:00:20.000Z"
+        }
+      ],
+      "source": "GPS",
+      "deviceTag": 1234567890
+    },
+    {
+      "timestamp": "2025-02-10T08:00:00.000Z",
+      "latitudeE7": 374425383,
+      "longitudeE7": -1220347522,
+      "accuracy": 8,
+      "activity": [
+        {
+          "activity": [
+            {
+              "type": "STILL",
+              "confidence": 96
+            },
+            {
+              "type": "UNKNOWN",
+              "confidence": 4
+            }
+          ],
+          "timestamp": "2025-02-10T08:00:20.000Z"
+        }
+      ],
+      "source": "WIFI",
+      "deviceTag": 1
+    }
+  ]
+}
