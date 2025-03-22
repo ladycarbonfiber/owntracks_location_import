@@ -83,8 +83,6 @@ fn main() {
             col("accuracy").alias("acc"),
             col("altitude").alias("alt"),
             col("verticalAccuracy").alias("vac"),
-            lit(tracker_id).alias("tid"),
-            lit("location").alias("_type"),
             col("timestamp"),
             col("tst"),
             col("deviceTag"),
@@ -110,10 +108,10 @@ fn main() {
                 acc: row_vals[2].clone().try_into().unwrap(),
                 alt: row_vals[3].clone().try_into().unwrap(),
                 vac: row_vals[4].clone().try_into().unwrap(),
-                timestamp_nanos: row_vals[7].try_extract().unwrap(),
-                tst: row_vals[8].try_extract().unwrap(),
-                tid: row_vals[5].try_extract().unwrap(),
-                record_type: row_vals[6].clone().try_into().unwrap()
+                timestamp_nanos: row_vals[5].try_extract().unwrap(),
+                tst: row_vals[6].try_extract().unwrap(),
+                tid: tracker_id.clone(),
+                record_type: String::from("location")
             }
         })
         .collect();
