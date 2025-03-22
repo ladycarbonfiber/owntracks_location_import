@@ -1,4 +1,4 @@
-use std::{fs::File, io::Write, str::FromStr};
+use std::{fs::File, io::Write};
 
 use chrono::prelude::*;
 use polars::prelude::*;
@@ -46,18 +46,15 @@ struct Cli {
     exclude_device: i32 // Probably should be an optional list, i only had the one
 }
 
-fn main() {
-    let args = Cli::parse();
-    let record_location = args.input_file;
-    let tracker_id = args.tracker_id;
-    let exclude_device = args.exclude_device;
+fn read(record_location:&str) -> Result<DataFrame, PolarsError>{
+    let mut file = std::fs::File::open(record_location)?;
+    let mut df = JsonReader::new(&mut file).finish()?;
+    df = df.explode(["locations"])?;
+    df = df.unnest(["locations"])?;
+    Ok(df)
+}
 
-    //Read
-    let mut file = std::fs::File::open(record_location).unwrap();
-    let mut df = JsonReader::new(&mut file).finish().unwrap();
-    df = df.explode(["locations"]).unwrap();
-    df = df.unnest(["locations"]).unwrap();
-    //Transform
+fn transform(df:DataFrame, tracker_id:&str, exclude_device:i32) -> Result<Vec<LocationRecord>, PolarsError>{
     let output = df
         .clone()
         .lazy()
@@ -94,8 +91,7 @@ fn main() {
         )
         .filter(col("lat").is_not_null())
         .sort(["tst"], Default::default())
-        .collect()
-        .unwrap();
+        .collect()?;
     let lines: Vec<LocationRecord> = output
         .into_struct(PlSmallStr::from_str("struct"))
         .into_series()
@@ -110,14 +106,27 @@ fn main() {
                 vac: row_vals[4].clone().try_into().unwrap(),
                 timestamp_nanos: row_vals[5].try_extract().unwrap(),
                 tst: row_vals[6].try_extract().unwrap(),
-                tid: tracker_id.clone(),
+                tid: String::from(tracker_id),
                 record_type: String::from("location")
             }
         })
         .collect();
+    return Ok(lines);
+}
+
+fn main() {
+    let args = Cli::parse();
+    let record_location = args.input_file;
+    let tracker_id = args.tracker_id;
+    let exclude_device = args.exclude_device;
+
+    //Read
+    let df = read(&record_location).expect("Failed to read in provided file");
+    //Transform
+    let lines = transform(df, &tracker_id, exclude_device).expect("Error working with sheet data");
     //Write
     //Not sure if this is the most efficient way to write out
-    let mut active_file = String::from_str("").unwrap();
+    let mut active_file = String::new();
     let mut active_lines: Vec<String> = Vec::new();
     for lr in lines {
         // Records are ordered by date so we can fill active lines until the active file changes then write out to the next one
